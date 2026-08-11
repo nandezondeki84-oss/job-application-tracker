@@ -1,5 +1,5 @@
 from database import create_database
-from jobs import add_application, get_applications
+from jobs import add_application, get_applications, search_applications
 
 create_database()
 
@@ -7,8 +7,11 @@ print("\nWelcome to the Job Application Tracker!")
 
 while True:
     print("\n1. Add application")
-    print("2. View applications")
-    print("3. Exit")
+print("2. View applications")
+print("3. Search applications")
+print("4. Exit")
+    
+    
 
     choice = input("Choose an option: ")
 
@@ -39,8 +42,27 @@ while True:
                 )
 
     elif choice == "3":
-        print("Goodbye!")
-        break
+    company = input("Enter company name to search: ")
+
+    applications = search_applications(company)
+
+    if not applications:
+        print("No applications found.")
+    else:
+        print("\nSearch results:")
+
+        for application in applications:
+            print(
+                f"ID: {application[0]} | "
+                f"Company: {application[1]} | "
+                f"Position: {application[2]} | "
+                f"Status: {application[3]} | "
+                f"Date: {application[4]}"
+            )
+
+elif choice == "4":
+    print("Goodbye!")
+    break
 
     else:
         print("Invalid option. Please try again.")
