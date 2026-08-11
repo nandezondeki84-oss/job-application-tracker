@@ -1,2 +1,6 @@
+from database import create_database
+
+create_database()
+
 print("Welcome to the Job Application Tracker!")
-print("Your job search starts here.")
+print("Database created successfully.")
